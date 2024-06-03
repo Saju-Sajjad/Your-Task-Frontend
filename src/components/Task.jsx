@@ -18,7 +18,7 @@ const TaskTable = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/tasks');
+        const response = await axios.get('https://your-task-backend.vercel.app//api/tasks');
         setTasks(response.data);
       } catch (error) {
         console.error('Error fetching tasks:', error);
@@ -48,13 +48,13 @@ const TaskTable = () => {
 
   const handleEditSubmit = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/tasks/${editTaskId}`, {
+      await axios.put(`https://your-task-backend.vercel.app//api/tasks/${editTaskId}`, {
         title: editTaskTitle,
         description: editTaskDescription,
         status: editTaskStatus // Include status in the submit
       });
       // After successful edit, update the tasks list by refetching the tasks
-      const response = await axios.get('http://localhost:3000/api/tasks');
+      const response = await axios.get('https://your-task-backend.vercel.app//api/tasks');
       setTasks(response.data);
       handleEditModalClose();
       toast.success('Task edited successfully!');
@@ -66,9 +66,9 @@ const TaskTable = () => {
 
   const handleStatusChange = async (taskId, newStatus) => {
     try {
-      await axios.put(`http://localhost:3000/api/tasks/${taskId}`, { status: newStatus });
+      await axios.put(`https://your-task-backend.vercel.app//api/tasks/${taskId}`, { status: newStatus });
       // After successful status update, update the tasks list by refetching the tasks
-      const response = await axios.get('http://localhost:3000/api/tasks');
+      const response = await axios.get('https://your-task-backend.vercel.app//api/tasks');
       setTasks(response.data);
       toast.success('Task status updated successfully!');
     } catch (error) {
@@ -79,9 +79,9 @@ const TaskTable = () => {
 
   const handleDelete = async (taskId) => { // Define handleDelete function
     try {
-      await axios.delete(`http://localhost:3000/api/tasks/${taskId}`);
+      await axios.delete(`https://your-task-backend.vercel.app//api/tasks/${taskId}`);
       // After successful deletion, update the tasks list by refetching the tasks
-      const response = await axios.get('http://localhost:3000/api/tasks');
+      const response = await axios.get('https://your-task-backend.vercel.app//api/tasks');
       setTasks(response.data);
       toast.success('Task deleted successfully!');
     } catch (error) {
