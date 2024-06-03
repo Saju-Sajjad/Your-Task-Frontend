@@ -51,7 +51,7 @@ const AddTask = () => {
         return;
       }
 
-      await axios.post('https://your-task-backend.vercel.app//api/tasks', taskData);
+      await axios.post('https://your-task-backend.vercel.app/api/tasks', taskData);
       toast.success('Task added successfully!');
       // Redirect to the task list page after successful addition
       navigate('/task');

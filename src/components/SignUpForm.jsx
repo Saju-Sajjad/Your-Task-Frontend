@@ -39,7 +39,7 @@ const SignUpForm = () => {
 
     try {
       const response = await axios.post(
-        "https://your-task-backend.vercel.app//api/signup",
+        "https://your-task-backend.vercel.app/api/signup",
         data,
         {
           headers: {
