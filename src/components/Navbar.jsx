@@ -16,7 +16,7 @@ function Navbar() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("https://your-task-backend.vercel.app/api/user", {
+        const response = await axios.get("https://your-task-backend.vercel.app/api/users", {
           withCredentials: true
         });
         setUserData(response.data.user);
@@ -32,7 +32,7 @@ function Navbar() {
 
   const sendHandleLogout = async () => {
     try {
-      await axios.post("https://your-task-backend.vercel.app/api/logout", null, {
+      await axios.post("https://your-task-backend.vercel.app/api/auth/logout", null, {
         withCredentials: true
       });
       // Show logout success toast

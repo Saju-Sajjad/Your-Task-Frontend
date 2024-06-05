@@ -1,11 +1,11 @@
-import{ useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button, TextField, Typography, Container, Box, Grid } from '@mui/material';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true; // Include cookies in requests
 
 const AddTask = () => {
   const [taskData, setTaskData] = useState({
@@ -51,13 +51,19 @@ const AddTask = () => {
         return;
       }
 
-      await axios.post('https://your-task-backend.vercel.app/api/tasks', taskData);
+      const response = await axios.post('https://your-task-backend.vercel.app/api/tasks', taskData);
       toast.success('Task added successfully!');
       // Redirect to the task list page after successful addition
       navigate('/task');
     } catch (error) {
       console.error('Error adding task:', error);
-      toast.error('Failed to add task. Please try again.');
+      if (error.response && error.response.status === 401) {
+        toast.error('Unauthorized: Invalid token. Please log in again.');
+        // Optionally redirect to login page
+        navigate('/login');
+      } else {
+        toast.error('Failed to add task. Please try again.');
+      }
     }
   };
 
